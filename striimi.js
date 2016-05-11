@@ -7,7 +7,7 @@
  * LICENSE file in the root directory of this source tree. 
  *
  */
- 
+
 const createStream = (initValue, filterFn) => {
 	let storedValue = initValue;
 	let listeners = [];
@@ -41,7 +41,7 @@ const createStream = (initValue, filterFn) => {
 
 		emit(value) {
 			// If filter given, apply it.
-			if (filterFn && !filterFn(storedValue, value)) {
+			if (filterFn && !filterFn(value, storedValue)) {
 				return false;
 			}
 
