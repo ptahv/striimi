@@ -8,68 +8,11 @@
  *
  */
 
-const createStream = (initValue, filterFn) => {
-	let storedValue = initValue;
-	let listeners = [];
+import striimi from './lib/striimi.js';
 
-	return {
-		// Call listener with storedValue
-		// if you just want to listen for changes, use listen
-		//
-		subscribe(listener) {
-			listeners = listeners.concat(listener);
-
-			listener(storedValue);
-
-			return () => {
-				listeners = listeners.filter(l => l !== listener);
-			}
-		},
-
-		listen(listener) {
-			listeners = listeners.concat(listener);
-
-			return () => {
-				listeners = listeners.filter(l => l !== listener);	
-			}
-		},
-
-		dispose() {
-			listeners = null;
-			storedValue = null;
-		},
-
-		emit(value) {
-			// If filter given, apply it.
-			if (filterFn && !filterFn(value, storedValue)) {
-				return false;
-			}
-
-			storedValue = value;
-
-			if (listeners.length === 0) return;
-			
-			listeners.map(fn => fn(value))
-		},
-
-		refresh() {
-			listeners.map(fn => fn(storedValue));
-		},
-
-		reset() {
-			storedValue = initValue;
-		},
-
-		getValue() {
-			return storedValue;
-		}
-	}
-}
+export const stream = striimi;
 
 export default {
-	createStream
+	stream
 }
 
-export {
-	createStream
-}
