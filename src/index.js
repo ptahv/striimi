@@ -8,11 +8,10 @@
  *
  */
 
-import striimi from './lib/striimi.js';
+import striimi from './striimi.js';
 
 export const stream = striimi;
 
 export default {
 	stream
 }
-
