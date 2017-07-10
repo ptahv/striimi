@@ -74,6 +74,13 @@ export default (initValue) => {
 		/* Undocumented, not intended for using. Still here if one needs it.. */
 		setValue(value) {
 			storedValue = value;
+			
+			return striimi;
+		},
+
+		setValues(value) {
+			storedValue = value;
+			
 			return striimi;
 		}
 	}
