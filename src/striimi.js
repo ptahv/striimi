@@ -42,7 +42,7 @@ export default (initValue) => {
 
 			if (listeners.length === 0) return;
 			
-			listeners.map(fn => fn(value))
+			listeners.map(fn => fn(storedValue))
 
 			return striimi;
 		},
