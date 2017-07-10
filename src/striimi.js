@@ -12,7 +12,7 @@ export default (initValue) => {
 	let storedValue = initValue;
 	let listeners = [];
 
-	return {
+	const striimi = {
 		subscribe(listener) {
 			listeners = listeners.concat(listener);
 
@@ -34,6 +34,7 @@ export default (initValue) => {
 		dispose() {
 			listeners = null;
 			storedValue = null;
+			striimi = null;
 		},
 
 		emit(value) {
@@ -42,14 +43,20 @@ export default (initValue) => {
 			if (listeners.length === 0) return;
 			
 			listeners.map(fn => fn(value))
+
+			return striimi;
 		},
 
 		refresh() {
 			listeners.map(fn => fn(storedValue));
+
+			return striimi;
 		},
 
 		reset() {
 			storedValue = initValue;
+
+			return striimi;
 		},
 
 		getValue() {
@@ -64,4 +71,6 @@ export default (initValue) => {
 			return listeners
 		}
 	}
+
+	return striimi;
 }
