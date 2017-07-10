@@ -12,7 +12,7 @@ export default (initValue) => {
 	let storedValue = initValue;
 	let listeners = [];
 
-	const striimi = {
+	let striimi = {
 		subscribe(listener) {
 			listeners = listeners.concat(listener);
 
@@ -69,6 +69,12 @@ export default (initValue) => {
 
 		getListeners() {
 			return listeners
+		},
+
+		/* Undocumented, not intended for using. Still here if one needs it.. */
+		setValue(value) {
+			storedValue = value;
+			return striimi;
 		}
 	}
 
