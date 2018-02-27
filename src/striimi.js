@@ -8,9 +8,32 @@
  *
  */
 
+
 export default (initValue) => {
 	let storedValue = initValue;
 	let listeners = [];
+
+	const emitter = (() => {
+		let emitBuffer = [];
+		let isEmitting = false;
+
+		return (emitData) => {
+			emitBuffer.push(emitData);
+
+			if (isEmitting)
+				return;
+
+			isEmitting = true;
+			while (emitBuffer.length > 0) {
+				const {emitListeners, emitValue} = emitBuffer[0];
+				emitListeners.map(fn => fn(emitValue));
+
+				buffer.shift();
+			}
+
+			isEmitting = false;
+		}
+	})();
 
 	let striimi = {
 		subscribe(listener) {
@@ -40,15 +63,22 @@ export default (initValue) => {
 		emit(value) {
 			storedValue = value;
 
-			if (listeners.length === 0) return;
-			
-			listeners.map(fn => fn(storedValue))
+			if (listeners.length === 0) 
+				return;
+
+			emitter({
+				emitListeners: listeners, 
+				emitValue: value
+			});
 
 			return striimi;
 		},
 
 		refresh() {
-			listeners.map(fn => fn(storedValue));
+			emitter({
+				emitListeners: listeners, 
+				emitValue: storedValue
+			});
 
 			return striimi;
 		},
