@@ -28,7 +28,7 @@ export default (initValue) => {
 				const {emitListeners, emitValue} = emitBuffer[0];
 				emitListeners.map(fn => fn(emitValue));
 
-				buffer.shift();
+				emitBuffer.shift();
 			}
 
 			isEmitting = false;
