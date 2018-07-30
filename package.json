@@ -18,7 +18,7 @@
     "src"
   ],
   "author": "Petri Tahvanainen",
-  "license": "BSD",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/ptahv/striimi/issues"
   },
