@@ -6,3 +6,4 @@
  */
 
 export { default } from './lib/striimi';
+export { default as stream } from './lib/striimi';
