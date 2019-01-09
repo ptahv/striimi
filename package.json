@@ -1,9 +1,8 @@
 {
   "name": "striimi",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Streaming library.",
-  "main": "src/index.js",
-  "unpkg": "dist/striimi.min.js",
+  "main": "dist/striimi.min.js",
   "files": [
     "dist",
     "src"
@@ -22,17 +21,18 @@
     "url": "https://github.com/ptahv/striimi/issues"
   },
   "homepage": "https://github.com/ptahv/striimi#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.5",
-    "@babel/preset-env": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
     "rollup": "^0.67.1",
     "rollup-plugin-babel": "^4.0.3",
+    "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-node-resolve": "^3.4.0",
     "rollup-plugin-replace": "^2.1.0",
     "rollup-plugin-terser": "^3.0.0"
-  },
-  "dependencies": {
-    "@babel/polyfill": "^7.0.0"
   }
 }
